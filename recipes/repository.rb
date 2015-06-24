@@ -32,9 +32,15 @@ when 'ubuntu'
       File.exist?("/etc/apt/sources.list.d/glusterfs-#{node['gluster']['version']}.list")
     end
   end
-when 'redhat', 'centos', 'amazon'
+when 'redhat', 'centos'
   yum_repository 'glusterfs' do
     url "http://download.gluster.org/pub/gluster/glusterfs/#{node['gluster']['version']}/LATEST/EPEL.repo/epel-$releasever/$basearch/"
+    gpgcheck false
+    action :create
+  end
+when 'amazon'
+  yum_repository 'glusterfs' do
+    url "http://download.gluster.org/pub/gluster/glusterfs/#{node['gluster']['version']}/LATEST/EPEL.repo/epel-6/$basearch/"
     gpgcheck false
     action :create
   end

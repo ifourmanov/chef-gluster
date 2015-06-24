@@ -22,7 +22,7 @@ case node['platform']
 when 'ubuntu'
   default['gluster']['server']['package'] = 'glusterfs-server'
   default['gluster']['server']['servicename'] = 'glusterfs-server'
-when 'redhat', 'centos'
+when 'redhat', 'centos', 'amazon'
   default['gluster']['server']['package'] = 'glusterfs-server'
   default['gluster']['server']['servicename'] = 'glusterd'
 end
@@ -31,7 +31,7 @@ end
 case node['platform']
 when 'ubuntu'
   default['gluster']['server']['dependencies'] = ['xfsprogs']
-when 'redhat', 'centos'
+when 'redhat', 'centos', 'amazon'
   default['gluster']['server']['dependencies'] = ['xfsprogs']
 end
 
